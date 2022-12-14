@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-// import { getCssText } from '../styles';
+import { getCssText } from '../styles';
 
 export default function Documtn() {
   return (
@@ -14,6 +14,12 @@ export default function Documtn() {
         <link
           href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'
           rel='stylesheet'
+        />
+
+        <style
+          id='stitches'
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: getCssText() }}
         />
       </Head>
       <body>
