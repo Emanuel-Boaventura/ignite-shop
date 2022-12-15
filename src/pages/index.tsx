@@ -34,6 +34,7 @@ export default function Home({ products }: IHomeProps) {
           passHref
           href={`/product/${product.id}`}
           legacyBehavior
+          prefetch={false}
         >
           <Product className='keen-slider__slide'>
             <figure>

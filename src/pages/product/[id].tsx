@@ -1,6 +1,10 @@
-import { GetStaticProps } from 'next';
+/* eslint-disable no-alert */
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import axios from 'axios';
 import Stripe from 'stripe';
+
+import { useState } from 'react';
 import stripe from '../../lib/stripe';
 import {
   ImageContainer,
@@ -15,25 +19,56 @@ interface ProductProps {
     imageUrl: string;
     price: string;
     description: string;
+    defaultPriceId: string;
   };
 }
 
 export default function Product({ product }: ProductProps) {
+  const [isCreatingCheckoutSession, setisCreatingCheckoutSession] =
+    useState(false);
+
+  async function handleBuyProduct() {
+    try {
+      setisCreatingCheckoutSession(true);
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId,
+      });
+
+      console.log('RRRRRRRRRRRRRRRRRRRRRRR: ', response.data);
+      window.location.href = response.data.checkoutUrl;
+    } catch (e) {
+      setisCreatingCheckoutSession(false);
+      alert('Falha ao redirecionar ao checkout!');
+    }
+  }
+
   return (
     <ProductContainer>
-      <ImageContainer />
-      <Image src={product.imageUrl} width={520} height={480} alt='' />
+      <ImageContainer>
+        <Image src={product.imageUrl} width={520} height={480} alt='' />
+      </ImageContainer>
       <ProductDetails>
         <h1>{product.name}</h1>
         <span>{product.price}</span>
 
         <p>{product.description}</p>
 
-        <button type='button'>Comprar agora</button>
+        <button
+          disabled={isCreatingCheckoutSession}
+          onClick={handleBuyProduct}
+          type='button'
+        >
+          Comprar agora
+        </button>
       </ProductDetails>
     </ProductContainer>
   );
 }
+
+export const getStaticPaths: GetStaticPaths = async () => ({
+  paths: [{ params: { id: 'prod_MyuywATrDQmbLu' } }],
+  fallback: true,
+});
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
   params,
@@ -55,6 +90,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           currency: 'BRL',
         }).format(price.unit_amount! / 100),
         description: product.description,
+        defaultPriceId: price.id,
       },
     },
     revalidate: 60 * 60 * 1, // 1 hour
