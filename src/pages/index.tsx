@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useKeenSlider } from 'keen-slider/react';
+import Head from 'next/head';
 import { GetStaticProps } from 'next';
+import { useKeenSlider } from 'keen-slider/react';
 import Stripe from 'stripe';
 
 import { HomeContainer, Product } from '../styles/pages/home';
@@ -27,35 +28,40 @@ export default function Home({ products }: IHomeProps) {
   });
 
   return (
-    <HomeContainer ref={sliderRef} className='keen-slider'>
-      {products.map((product) => (
-        <Link
-          key={product.id}
-          passHref
-          href={`/product/${product.id}`}
-          legacyBehavior
-          prefetch={false}
-        >
-          <Product className='keen-slider__slide'>
-            <figure>
-              <Image
-                src={product.imageUrl}
-                width={520}
-                height={480}
-                alt=''
-                priority
-              />
+    <>
+      <Head>
+        <title>Home | IgniteShop</title>
+      </Head>
 
-              <figcaption>
-                <strong>{product.name}</strong>
+      <HomeContainer ref={sliderRef} className='keen-slider'>
+        {products.map((product) => (
+          <Link
+            key={product.id}
+            passHref
+            href={`/product/${product.id}`}
+            prefetch={false}
+          >
+            <Product className='keen-slider__slide'>
+              <figure>
+                <Image
+                  src={product.imageUrl}
+                  width={520}
+                  height={480}
+                  alt=''
+                  priority
+                />
 
-                <span>{product.price}</span>
-              </figcaption>
-            </figure>
-          </Product>
-        </Link>
-      ))}
-    </HomeContainer>
+                <figcaption>
+                  <strong>{product.name}</strong>
+
+                  <span>{product.price}</span>
+                </figcaption>
+              </figure>
+            </Product>
+          </Link>
+        ))}
+      </HomeContainer>
+    </>
   );
 }
 
