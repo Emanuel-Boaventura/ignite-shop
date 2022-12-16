@@ -4,8 +4,9 @@ import Head from 'next/head';
 import { GetStaticProps } from 'next';
 import { useKeenSlider } from 'keen-slider/react';
 import Stripe from 'stripe';
+import { Handbag } from 'phosphor-react';
 
-import { HomeContainer, Product } from '../styles/pages/home';
+import { HomeContainer, Product, PageContainer } from '../styles/pages/home';
 
 import 'keen-slider/keen-slider.min.css';
 import stripe from '../lib/stripe';
@@ -28,7 +29,7 @@ export default function Home({ products }: IHomeProps) {
   });
 
   return (
-    <>
+    <PageContainer>
       <Head>
         <title>Home | IgniteShop</title>
       </Head>
@@ -52,16 +53,22 @@ export default function Home({ products }: IHomeProps) {
                 />
 
                 <figcaption>
-                  <strong>{product.name}</strong>
+                  <div className='about'>
+                    <strong>{product.name}</strong>
 
-                  <span>{product.price}</span>
+                    <span>{product.price}</span>
+                  </div>
+
+                  <button type='button'>
+                    <Handbag size={32} weight='bold' />
+                  </button>
                 </figcaption>
               </figure>
             </Product>
           </Link>
         ))}
       </HomeContainer>
-    </>
+    </PageContainer>
   );
 }
 

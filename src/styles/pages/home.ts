@@ -1,10 +1,12 @@
 import { styled } from '..'
 
-export const HomeContainer = styled('main', {
+export const PageContainer = styled('main', {
   display: 'flex',
-  width: '100%',
-  maxWidth: 'calc(100vw - ((100vw - 1180px) / 2))',
-  marginLeft: 'auto',
+  paddingLeft: '4rem',
+})
+
+export const HomeContainer = styled('div', {
+  display: 'flex',
   minHeight: 656,
 
 })
@@ -30,7 +32,7 @@ export const Product = styled('div', {
       bottom: '0.25rem',
       left: '0.25rem',
       right: '0.25rem',
-      padding: '2rem',
+      padding: '1.25rem',
 
       borderRadius: 6,
 
@@ -44,8 +46,15 @@ export const Product = styled('div', {
       opacity: 0,
       transition: 'all 0.2s ease-in-out',
 
+      '.about': {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItem: 'center',
+        gap: '0.25rem',
+      },
+
       strong: {
-        fontSize: '$lg',
+        fontSize: '$md',
         color: '$gray100'
       },
 
@@ -55,6 +64,21 @@ export const Product = styled('div', {
         color: '$green300',
       },
 
+      button: {
+        padding: '0.75rem',
+        backgroundColor: '$green500',
+        color: '$gray100',
+        borderRadius: 6,
+        border: 'none',
+        cursor: 'pointer',
+        position: 'relative',
+        lineHeight: 0,
+
+        '&:hover': {
+          backgroundColor: '$green300',
+
+        },
+      }
     },
 
     '&:hover': {
