@@ -98,3 +98,9 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 2, // 2 hours
   };
 };
+/* 
+  pegar os atributos do item selecionado (ja estao em tela), e além deles o default_price.id,
+  enviar os dados para a context api, e mostrar apenas o necessario na tela,
+  ao clicar em comprar DENTRO do carrinho fazer um requisiçao parecida com a do "succes.tsx"
+  na pagina do produto apenas adiciona o item na sacola
+*/

@@ -25,19 +25,19 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setisCreatingCheckoutSession] =
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
     useState(false);
 
   async function handleBuyProduct() {
     try {
-      setisCreatingCheckoutSession(true);
+      setIsCreatingCheckoutSession(true);
       const response = await axios.post('/api/checkout', {
         priceId: product.defaultPriceId,
       });
 
       window.location.href = response.data.checkoutUrl;
     } catch (e) {
-      setisCreatingCheckoutSession(false);
+      setIsCreatingCheckoutSession(false);
       alert('Falha ao redirecionar ao checkout!');
     }
   }
@@ -63,7 +63,7 @@ export default function Product({ product }: ProductProps) {
             onClick={handleBuyProduct}
             type='button'
           >
-            Comprar agora
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>

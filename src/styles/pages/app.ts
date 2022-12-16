@@ -139,6 +139,11 @@ export const Cart = styled('div', {
             border: 'none',
             padding: '1.25rem',
             borderRadius: 6,
+            cursor: 'pointer',
+
+            '&:hover': {
+              backgroundColor: '$green300'
+            }
           }
         }
       }

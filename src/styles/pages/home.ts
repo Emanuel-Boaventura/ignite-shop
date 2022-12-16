@@ -76,7 +76,6 @@ export const Product = styled('div', {
 
         '&:hover': {
           backgroundColor: '$green300',
-
         },
       }
     },
