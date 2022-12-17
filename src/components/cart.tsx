@@ -31,6 +31,17 @@ function Cart({ displayCart, open }: ICartProps) {
     }
   }
 
+  const totalPriceUnitAmount =
+    cartItens.reduce((acc, { price }) => {
+      const formatedPrice = price.toString(); // "typeof price" says "string", but comport likes a number, so have to convert with ".toString()"
+      return acc + Number(formatedPrice.replace(/\D/g, ''));
+    }, 0) / 100;
+
+  const totalPrice = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(totalPriceUnitAmount);
+
   return (
     <CartContainer open={open}>
       <button className='closeButton' onClick={displayCart} type='button'>
@@ -67,13 +78,13 @@ function Cart({ displayCart, open }: ICartProps) {
         <div className='quantity'>
           <p>Quantidade</p>
 
-          <p>X itens</p>
+          <p>{cartItens.length} itens</p>
         </div>
 
         <div className='price'>
           <strong>Valor total</strong>
 
-          <span>XXXX</span>
+          <span>{totalPrice}</span>
         </div>
 
         <button

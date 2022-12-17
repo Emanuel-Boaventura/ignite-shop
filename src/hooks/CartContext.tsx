@@ -26,9 +26,7 @@ export function CartProvider({ children }: IProviderProps) {
   function addItemCart(newItem: IItem) {
     const hasItem = cartItens.some((item) => item.priceId === newItem.priceId);
 
-    if (!hasItem) return setCartItens((state) => [...state, newItem]);
-    // eslint-disable-next-line no-alert
-    return alert('ja tem'); // pra testa
+    if (!hasItem) setCartItens((state) => [...state, newItem]);
   }
 
   function removeCartItem(itemPriceId: string) {
