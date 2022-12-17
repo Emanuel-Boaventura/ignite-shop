@@ -11,10 +11,10 @@ export const CartContext = createContext<ICartContext>({} as ICartContext);
 
 export interface IItem {
   name: string;
-  image: string;
+  imageUrl: string;
   priceId: string;
   price: number;
-  quantity: number;
+  quantity?: number;
 }
 
 interface IProviderProps {

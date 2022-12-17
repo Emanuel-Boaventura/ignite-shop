@@ -6,16 +6,19 @@ import { useKeenSlider } from 'keen-slider/react';
 import Stripe from 'stripe';
 import { Handbag } from 'phosphor-react';
 
+import { useContext } from 'react';
 import { HomeContainer, Product, PageContainer } from '../styles/pages/home';
 
 import 'keen-slider/keen-slider.min.css';
 import stripe from '../lib/stripe';
+import { CartContext } from '../hooks/CartContext';
 
 interface IHomeProps {
   products: {
     id: string;
     name: string;
     imageUrl: string;
+    priceId: string;
     price: number;
   }[];
 }
@@ -27,6 +30,8 @@ export default function Home({ products }: IHomeProps) {
       spacing: 48,
     },
   });
+
+  const { addItemCart } = useContext(CartContext);
 
   return (
     <PageContainer>
@@ -59,7 +64,7 @@ export default function Home({ products }: IHomeProps) {
                     <span>{product.price}</span>
                   </div>
 
-                  <button type='button'>
+                  <button onClick={() => addItemCart(product)} type='button'>
                     <Handbag size={32} weight='bold' />
                   </button>
                 </figcaption>
@@ -84,6 +89,7 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
+      priceId: price.id,
       price: new Intl.NumberFormat('pt-br', {
         style: 'currency',
         currency: 'BRL',
@@ -98,6 +104,7 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 2, // 2 hours
   };
 };
+
 /* 
   pegar os atributos do item selecionado (ja estao em tela), e além deles o default_price.id,
   enviar os dados para a context api, e mostrar apenas o necessario na tela,
