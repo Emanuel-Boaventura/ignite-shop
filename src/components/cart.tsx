@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useContext } from 'react';
 import { CartContext } from '../hooks/CartContext';
 import { CartProduct, CartContainer } from '../styles/components/cart';
@@ -19,7 +20,9 @@ function Cart({ displayCart, open }: ICartProps) {
         {cartItens &&
           cartItens.map((item) => (
             <CartProduct>
-              <Image src={item.imageUrl} width={100} height={100} alt='' />
+              <Link href={`/product/${item.id}`}>
+                <Image src={item.imageUrl} width={100} height={100} alt='' />
+              </Link>
 
               <div className='about'>
                 <p>{item.name}</p>

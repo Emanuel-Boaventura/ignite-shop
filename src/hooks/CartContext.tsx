@@ -10,6 +10,7 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({} as ICartContext);
 
 export interface IItem {
+  id: string;
   name: string;
   imageUrl: string;
   priceId: string;

@@ -2,7 +2,7 @@ import { styled } from '..'
 
 export const PageContainer = styled('main', {
   display: 'flex',
-  padding: '0 4rem',
+  padding: '2.5rem 4rem 0',
 })
 
 export const HomeContainer = styled('div', {

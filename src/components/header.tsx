@@ -21,7 +21,7 @@ function Header({ displayCart }: IHeaderProps) {
     <HeaderContainer>
       <HeaderContent>
         <Link href='/'>
-          <Image src={logoImg} alt='' />
+          <Image src={logoImg} height={48} alt='' />
         </Link>
 
         <CartButton

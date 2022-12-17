@@ -8,9 +8,12 @@ export const HeaderContent = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '2rem 0',
-  width: '90vw',
-  margin: '0 auto'
+  padding: '1rem 2rem',
+  width: '100%',
+  margin: '0 auto',
+  boxShadow: '0px 4px 16px 0px rgba(32,128,32, 0.3)',
+  zIndex: 1
+
 })
 
 export const CartButton = styled('button', {

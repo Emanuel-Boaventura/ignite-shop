@@ -5,13 +5,14 @@ export const PageContainer = styled('div', {
   flexDirection: 'column',
   height: '100vh',
   width: '100vw',
-  overflowX: 'hidden',
+  overflow: 'hidden',
 })
 
 export const MainContentContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
+  height: '100%',
 
   margin: 'auto 0',
 })

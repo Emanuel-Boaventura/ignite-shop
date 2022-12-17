@@ -27,16 +27,6 @@ export const CartContainer = styled('div', {
           flexDirection: 'column',
           gap: '2rem',
           overflowY: 'scroll',
-
-          '&::-webkit-scrollbar': {
-            width: '0.5rem',
-            background: 'transparent'
-          },
-
-          '&::-webkit-scrollbar-thumb': {
-            background: '$gray300',
-            borderRadius: '100px',
-          }
         },
 
         '.buySection': {

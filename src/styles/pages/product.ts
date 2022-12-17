@@ -5,9 +5,11 @@ export const ProductContainer = styled('main', {
   gridTemplateColumns: '1fr 1fr',
   alignItems: 'stretch',
   gap: '4rem',
+  overflowY: 'scroll',
 
   maxWidth: 1180,
-  margin: '0 auto',
+  padding: '2.5rem 0',
+  margin: '0 auto 5.5rem',
 })
 
 export const ImageContainer = styled('div', {
