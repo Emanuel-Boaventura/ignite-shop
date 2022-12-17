@@ -17,13 +17,18 @@ export interface IItem {
   quantity: number;
 }
 
-export function CartProvider(children: ReactNode) {
+interface IProviderProps {
+  children: ReactNode;
+}
+
+export function CartProvider({ children }: IProviderProps) {
   const [cartItens, setCartItens] = useState<IItem[]>([]);
 
   function addItemCart(newItem: IItem) {
     const hasItem = cartItens.some((item) => item.priceId === newItem.priceId);
 
     if (!hasItem) return setCartItens((state) => [...state, newItem]);
+    // eslint-disable-next-line no-alert
     return alert('ja tem'); // pra testa
   }
 
