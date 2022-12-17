@@ -5,6 +5,7 @@ export const PageContainer = styled('div', {
   flexDirection: 'column',
   height: '100vh',
   width: '100vw',
+  overflowX: 'hidden',
 })
 
 export const MainContentContainer = styled('div', {

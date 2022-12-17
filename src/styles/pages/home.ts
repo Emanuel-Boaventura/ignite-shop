@@ -2,12 +2,14 @@ import { styled } from '..'
 
 export const PageContainer = styled('main', {
   display: 'flex',
-  paddingLeft: '4rem',
+  padding: '0 4rem',
 })
 
 export const HomeContainer = styled('div', {
   display: 'flex',
   minHeight: 656,
+
+  overflow: 'visible !important'
 
 })
 
@@ -15,9 +17,9 @@ export const Product = styled('div', {
   figure: {
     background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
     borderRadius: 8,
-    cursor: 'pointer',
     position: 'relative',
     overflow: 'hidden',
+    maxWidth: 'fit-content',
 
     display: 'flex',
     alignItems: 'center',
@@ -25,6 +27,7 @@ export const Product = styled('div', {
 
     img: {
       objectFit: 'cover',
+      cursor: 'pointer',
     },
 
     figcaption: {

@@ -26,7 +26,7 @@ interface IHomeProps {
 export default function Home({ products }: IHomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
-      perView: 3,
+      perView: 'auto',
       spacing: 48,
     },
   });
@@ -41,14 +41,9 @@ export default function Home({ products }: IHomeProps) {
 
       <HomeContainer ref={sliderRef} className='keen-slider'>
         {products.map((product) => (
-          <Link
-            key={product.id}
-            passHref
-            href={`/product/${product.id}`}
-            prefetch={false}
-          >
-            <Product className='keen-slider__slide'>
-              <figure>
+          <Product key={product.id} className='keen-slider__slide'>
+            <figure>
+              <Link passHref href={`/product/${product.id}`} prefetch={false}>
                 <Image
                   src={product.imageUrl}
                   width={520}
@@ -56,21 +51,20 @@ export default function Home({ products }: IHomeProps) {
                   alt=''
                   priority
                 />
+              </Link>
+              <figcaption>
+                <div className='about'>
+                  <strong>{product.name}</strong>
 
-                <figcaption>
-                  <div className='about'>
-                    <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </div>
 
-                    <span>{product.price}</span>
-                  </div>
-
-                  <button onClick={() => addItemCart(product)} type='button'>
-                    <Handbag size={32} weight='bold' />
-                  </button>
-                </figcaption>
-              </figure>
-            </Product>
-          </Link>
+                <button onClick={() => addItemCart(product)} type='button'>
+                  <Handbag size={32} weight='bold' />
+                </button>
+              </figcaption>
+            </figure>
+          </Product>
         ))}
       </HomeContainer>
     </PageContainer>
