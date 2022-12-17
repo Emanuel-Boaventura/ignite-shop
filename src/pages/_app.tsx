@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import Image from 'next/image';
 import { Handbag } from 'phosphor-react';
 import { useState } from 'react';
+import Link from 'next/link';
 import { globalStyles } from '../styles/global';
 import logoImg from '../assets/logo.svg';
 import {
@@ -25,7 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <PageContainer>
       <Header>
         <HeaderContent>
-          <Image src={logoImg} alt='' />
+          <Link href='/'>
+            <Image src={logoImg} alt='' />
+          </Link>
 
           <CartButton
             onClick={() => setOpen((state) => !state)}
