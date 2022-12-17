@@ -19,7 +19,6 @@ export const HeaderContent = styled('div', {
 export const CartButton = styled('button', {
   padding: '0.75rem',
   backgroundColor: '$gray800',
-  color: '$gray300',
   borderRadius: 6,
   border: 'none',
   cursor: 'pointer',
@@ -28,6 +27,10 @@ export const CartButton = styled('button', {
 
   span: {
     display: 'none'
+  },
+
+  svg: {
+    color: '$gray500',
   },
 
   variants: {
@@ -42,17 +45,20 @@ export const CartButton = styled('button', {
           borderRadius: "100%",
           position: 'absolute',
           backgroundColor: '$green500',
-          color: '$gray300',
+          color: '$gray100',
           border: '3px solid #121214',
           top: 0,
           right: 0,
-          transform: 'translate(25%,-25%)'
+          transform: 'translate(25%,-25%)',
+
         }
       }
     }
   },
 
   '&:hover': {
-    color: '$gray100',
+    svg: {
+      color: '$gray100',
+    },
   }
 })

@@ -12,14 +12,31 @@ export const CartContainer = styled('div', {
         flexDirection: 'column',
         position: 'absolute',
         right: 0,
-        padding: '3rem',
-        width: '30rem',
+        padding: '1.5rem',
+        width: '26rem',
         height: '100vh',
         backgroundColor: '$gray800',
-        gap: '2rem',
+
+        '.closeButton': {
+          position: 'absolute',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          top: '1rem',
+          right: '1rem',
+          height: 28,
+          width: 28,
+          color: '$gray500',
+
+          '&:hover': {
+            color: '$gray100'
+          }
+
+        },
 
         h3: {
-          fontSize: '$xl'
+          fontSize: '$xl',
+          marginBottom: '2rem',
         },
 
         '.productsSection': {
@@ -27,10 +44,12 @@ export const CartContainer = styled('div', {
           flexDirection: 'column',
           gap: '2rem',
           overflowY: 'scroll',
+          height: '100%',
         },
 
         '.buySection': {
           marginTop: 'auto',
+          paddingTop: '1rem',
 
           '.quantity': {
             display: 'flex',
@@ -62,8 +81,13 @@ export const CartContainer = styled('div', {
             borderRadius: 6,
             cursor: 'pointer',
 
-            '&:hover': {
-              backgroundColor: '$green300'
+            '&:disabled': {
+              opacity: 0.6,
+              cursor: 'not-allowed',
+            },
+
+            '&:not(:disabled):hover': {
+              backgroundColor: '$green300',
             }
           }
         }
@@ -75,6 +99,7 @@ export const CartContainer = styled('div', {
 export const CartProduct = styled('div', {
   display: 'flex',
   gap: '1.25rem',
+  maxHeight: 100,
 
   img: {
     background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
@@ -84,9 +109,10 @@ export const CartProduct = styled('div', {
   '.about': {
     display: 'flex',
     flexDirection: 'column',
-    gap: '.75rem',
+    gap: '0.5rem',
     fontiSize: '$md',
-    padding: '0.5rem 0',
+    padding: '0.25rem 0',
+
 
 
     button: {

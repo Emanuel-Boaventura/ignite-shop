@@ -3,7 +3,6 @@ import { ReactNode, createContext, useState } from 'react';
 interface ICartContext {
   cartItens: IItem[];
   addItemCart: (item: IItem) => void;
-  changeQuantityCartItem: (itemPriceId: string, newQuantity: number) => void;
   removeCartItem: (itemPriceId: string) => void;
 }
 
@@ -15,7 +14,6 @@ export interface IItem {
   imageUrl: string;
   priceId: string;
   price: number;
-  quantity?: number;
 }
 
 interface IProviderProps {
@@ -33,18 +31,6 @@ export function CartProvider({ children }: IProviderProps) {
     return alert('ja tem'); // pra testa
   }
 
-  function changeQuantityCartItem(itemPriceId: string, newQuantity: number) {
-    setCartItens(
-      cartItens.map((item) => {
-        if (item.priceId === itemPriceId) {
-          return { ...item, quantity: newQuantity };
-        }
-
-        return item;
-      })
-    );
-  }
-
   function removeCartItem(itemPriceId: string) {
     setCartItens(cartItens.filter(({ priceId }) => itemPriceId !== priceId));
   }
@@ -52,7 +38,7 @@ export function CartProvider({ children }: IProviderProps) {
   return (
     <CartContext.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
-      value={{ cartItens, addItemCart, changeQuantityCartItem, removeCartItem }}
+      value={{ cartItens, addItemCart, removeCartItem }}
     >
       {children}
     </CartContext.Provider>

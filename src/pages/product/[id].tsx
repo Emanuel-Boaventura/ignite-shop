@@ -1,10 +1,9 @@
 /* eslint-disable no-alert */
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
-import axios from 'axios';
 import Stripe from 'stripe';
 import Head from 'next/head';
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import stripe from '../../lib/stripe';
 import {
@@ -12,35 +11,21 @@ import {
   ProductContainer,
   ProductDetails,
 } from '../../styles/pages/product';
+import { CartContext } from '../../hooks/CartContext';
 
 interface ProductProps {
   product: {
     id: string;
     name: string;
     imageUrl: string;
-    price: string;
+    price: number;
     description: string;
-    defaultPriceId: string;
+    priceId: string;
   };
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
-    useState(false);
-
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingCheckoutSession(true);
-      const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
-      });
-
-      window.location.href = response.data.checkoutUrl;
-    } catch (e) {
-      setIsCreatingCheckoutSession(false);
-      alert('Falha ao redirecionar ao checkout!');
-    }
-  }
+  const { addItemCart } = useContext(CartContext);
 
   return (
     <>
@@ -58,11 +43,7 @@ export default function Product({ product }: ProductProps) {
 
           <p>{product.description}</p>
 
-          <button
-            disabled={isCreatingCheckoutSession}
-            onClick={handleBuyProduct}
-            type='button'
-          >
+          <button onClick={() => addItemCart(product)} type='button'>
             Colocar na sacola
           </button>
         </ProductDetails>
@@ -96,7 +77,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
           currency: 'BRL',
         }).format(price.unit_amount! / 100),
         description: product.description,
-        defaultPriceId: price.id,
+        priceId: price.id,
       },
     },
     revalidate: 60 * 60 * 1, // 1 hour
