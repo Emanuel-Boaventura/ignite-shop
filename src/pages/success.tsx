@@ -27,11 +27,23 @@ export default function Success({ customerName, product }: ISuccessProps) {
         <h1>Compra efetuada!</h1>
 
         <ImageContainer>
-          <Image src={product.imageUrl} width={120} height={110} alt='' />
+          <div>
+            <Image src={product.imageUrl} width={140} height={140} alt='' />
+          </div>
+          <div>
+            <Image src={product.imageUrl} width={140} height={140} alt='' />
+          </div>
+          <div>
+            <Image src={product.imageUrl} width={140} height={140} alt='' />
+          </div>
+          <div>
+            <Image src={product.imageUrl} width={140} height={140} alt='' />
+          </div>
         </ImageContainer>
 
+        {/* se tiver uma camisa exibe uma linha, se tiver mais exibe a outra */}
         <p>
-          Uhuul <strong>{customerName}</strong>, sua{' '}
+          Uhuul <strong>{customerName}</strong>, sua compra de{' '}
           <strong>{product.name}</strong> já está a caminho da sua casa.
         </p>
 

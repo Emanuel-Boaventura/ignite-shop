@@ -18,8 +18,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     line_items: [
       {
         price: priceId,
-        quantity: 1
-      }
+        quantity: 3
+      },
+      // {
+      //   price: priceId,
+      //   quantity: 1
+      // }
     ]
   })
 

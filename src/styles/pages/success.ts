@@ -4,12 +4,12 @@ export const SuccessContainer = styled('main', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   margin: '0 auto',
   height: 656,
 
   h1: {
-    fontSize: '$2xl',
+    fontSize: '$xxl',
     color: '$gray100',
   },
 
@@ -37,20 +37,31 @@ export const SuccessContainer = styled('main', {
 });
 
 export const ImageContainer = styled('div', {
-  width: '100%',
-  maxWidth: 130,
-  height: 145,
-  background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
-  padding: '0.25rem',
-  marginTop: '4rem',
-
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+
+  div: {
+    width: '100%',
+    maxWidth: 140,
+    height: 140,
+    background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
+    borderRadius: 100,
+    padding: '0.25rem',
+    margin: '4rem -4rem 0 0',
+    border: '.25rem solid $gray900',
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
 
-  img: {
-    objectFit: 'cover',
+    img: {
+      objectFit: 'cover',
+    }
+  },
+
+  'div:last-child': {
+    marginRight: 0
   }
 });
+

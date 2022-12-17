@@ -103,4 +103,11 @@ export const getStaticProps: GetStaticProps = async () => {
   enviar os dados para a context api, e mostrar apenas o necessario na tela,
   ao clicar em comprar DENTRO do carrinho fazer um requisiçao parecida com a do "succes.tsx"
   na pagina do produto apenas adiciona o item na sacola
+
+  enviar no body da requisiçao um array com o priceId e quantidade do item
+
+
+
+  ANOTHER THINGS:
+  fazer o logo do ignite shop retornar para home
 */
